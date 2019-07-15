@@ -1,0 +1,22 @@
+activar las configuraciones de php en short_open_tag
+
+activar el modulo: rewrite_module
+
+
+entrar a la siguiente direccion
+D:\wamp\bin\php\php5.3.10
+
+de ahi copiar el archivo libpq.dll a la siguiente direccion
+
+D:\wamp\bin\apache\Apache2.2.21
+
+
+despues de eso se debe activar las extension de pgsql en php
+
+para ello se debe ir a activar php_pdo_pgsql
+luego activar php_pgsql
+
+
+
+luego desde el archivo C:\Program Files\PostgreSQL\9.3\data 
+pg_hba.conf habiliar la direccion ip para el ingreso
