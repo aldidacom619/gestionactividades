@@ -8,7 +8,7 @@
   <!-- Apple devices fullscreen -->
   <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <title>ALDIDACOM -Login</title>
+  <title>UGS - Login</title>
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="<?php echo  base_url() ?>recursos/login/bootstrap.min.css">
@@ -40,7 +40,7 @@
   <div class="wrapper">
     <h1>
       <a href="#">
-        <img src="<?php echo  base_url() ?>recursos/login/aldidacom2.png" alt="" class="retina-ready" width="59" height="49">ALDIDACOM</a>
+        <img src="<?php echo  base_url() ?>recursos/login/aldidacom2.png" alt="" class="retina-ready" width="59" height="49">RUAT UGS</a>
     </h1>
     <div class="login-body">
       <h2>INGRESO AL SISTEMA</h2>

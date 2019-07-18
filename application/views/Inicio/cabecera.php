@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ALDIDACOM</title>
+    <title>RUAT UGS</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo  base_url() ?>recursos/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

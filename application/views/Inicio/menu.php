@@ -1,5 +1,5 @@
  <!-- Navigation -->
- <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;background: #FE2E2E;color:#FFFFFF;">
+ <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;background: #005462;color:#FFFFFF;">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" style="margin-bottom: 0;background: #FE2E2E;color:#FFFFFF;"href="">ALDIDACOM v1.0 - Sistema Contable</a>
+        <a class="navbar-brand" style="margin-bottom: 0;background: #005462;color:#FFFFFF;"href="">UGS - GESTION DE ACTIVIDADES</a>
 
     </div>
     <!-- /.navbar-header -->
@@ -29,10 +29,13 @@
                     <div class="input-group custom-search-form">
                         <span class="input-group-btn">
                             <H5>Usuario: <br><?= $usuario?></H5>
+                            
                         </span>
                     </div>                    
                 </li>
-           
+                <li>
+                      <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>INICIO</a>
+                    </li>
                 <? foreach($rolescero as $rol):?>
                     <li>
                       <a href="index.html"><i class="fa fa-dashboard fa-fw"></i><?=$rol->opcion?></a>
@@ -60,7 +63,8 @@
                 <? if ($nivelanterior == 2){?>
                     </ul>
                   </li>
-                <?}?>     
+                <?}?>  
+                
             </ul>
         </div>
         

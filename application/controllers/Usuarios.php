@@ -19,9 +19,9 @@ class Usuarios extends CI_Controller
 	}
 	function logued() 
 	{	
-		$username = strtoupper($this->input->post('username'));
-		$password =  md5("aldidacom".($this->input->post('pass')));
-		//echo $username." - ".$password;
+		$username = ($this->input->post('username'));
+		$password =  md5($this->input->post('pass'));
+		echo $username." - ".$password;
 		$login = $this->usuarios_model->loguear($username, $password);
 		if($login)
 		{
@@ -31,22 +31,20 @@ class Usuarios extends CI_Controller
 				$data = array(
 					'is_logued_in'  => TRUE,
 					'id' => $login[0]->id,
-					'codad_aplicacion' => $login[0]->codad_aplicacion,
-					'nombres' => $login[0]->nombres,
-					'apellidos' => $login[0]->apellidos,
-					'nro_documento' => $login[0]->nro_documento,
-					'tipo_documento' => $login[0]->tipo_documento,
-					'idad_logs' => $login[0]->idad_logs,
-					'direccion' => $login[0]->direccion,
-					'tel_cel' => $login[0]->tel_cel,
-					'fecha_nacimiento' => $login[0]->fecha_nacimiento,
-					'correo' => $login[0]->correo,
-					'cargo' => $login[0]->cargo,
-					'login' => $login[0]->login,
-					'clave' => $login[0]->clave,
-					'tipo_user' => $login[0]->tipo_user,
-					'estado' => $login[0]->estado,
-					'usuario' => $login[0]->nombres." ".$login[0]->apellidos
+					  'ci' => $login[0]->ci,
+					  'nombres' => $login[0]->nombres,
+					  'primer_apellido' => $login[0]->primer_apellido,
+					  'segundo_apellido' => $login[0]->segundo_apellido,
+					  'usuario' => $login[0]->nombres." ".$login[0]->primer_apellido." ".$login[0]->segundo_apellido,
+					  'sexo' => $login[0]->sexo,
+					  'fecha_nacimiento' => $login[0]->fecha_nacimiento,
+					  'telefono' => $login[0]->telefono,
+					  'correo' => $login[0]->correo,
+					  'direccion' => $login[0]->direccion,
+					  'cargo' => $login[0]->cargo,
+					  'id_tipo_user' => $login[0]->id_tipo_user,
+					  'username' => $login[0]->username,					 
+					  'estado' => $login[0]->estado,
 									
 				); 
 				$this->session->set_userdata($data);				
