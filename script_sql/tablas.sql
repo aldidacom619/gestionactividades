@@ -100,6 +100,6 @@ ALTER TABLE usuarios.organizacion_usuarios
   OWNER TO postgres;
 
 
-insert into usuarios.usuarios (nombres,primer_apellido,segundo_apellido,sexo,cargo,id_tipo_user,username,contrasenia,estado)values ()
+
 
 

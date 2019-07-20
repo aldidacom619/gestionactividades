@@ -22,7 +22,6 @@ class Inicio extends CI_Controller
 		$id_usu = $this->session->userdata('id');
 		$dato['id_usu'] = $id_usu;
 		$dato['usuario'] = $this->session->userdata('usuario');
-		$dato['cargo'] = $this->session->userdata('cargo');
 		$dato['rolescero'] = $this->roles_model->obtener_roles_cero($id_usu);
 		$dato['roles'] = $this->roles_model->obtener_roles($id_usu);
 
