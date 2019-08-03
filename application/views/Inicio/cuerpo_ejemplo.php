@@ -1,8 +1,6 @@
 <div id="page-wrapper">
         <!-- /#INICIA CUERPO -->
-
-
-            <div class="row">
+           <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Forms</h1>
                 </div>

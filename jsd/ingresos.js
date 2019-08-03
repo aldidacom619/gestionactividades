@@ -5,6 +5,7 @@ var validarci = false;
 function baseurl(enlace)
 {
     base_url = enlace;  
+    //alert(base_url);
 }
 function validacioncuentasegreso()
 {

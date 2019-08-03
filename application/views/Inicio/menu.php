@@ -16,7 +16,8 @@
         
         <!-- /.dropdown -->
         <li>
-            <a href="<?php echo base_url()?>usuarios/salir" role="button">Cerrar sesión</a></li>
+            <a href="<?php echo base_url()?>usuarios/salir" role="button">Cerrar sesión</a>
+        </li>
         
         <!-- /.dropdown -->
     </ul>
@@ -37,13 +38,13 @@
                   <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>INICIO</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-male"></i> Personal<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="<?php echo site_url("");?>">Nuevo Usuario</a>
+                            <a href="<?php echo site_url("Personal");?>">Nuevo Usuario</a>
                         </li>
                         <li>
-                            <a href="<?php echo site_url("");?>">Asignación de Área</a>
+                            <a href="<?php echo site_url("Personal/asignacion_area");?>">Asignación de Área</a>
                         </li>
                         <li>
                             <a href="<?php echo site_url("");?>">Cambio de Área</a>
@@ -55,7 +56,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Actividades<span class="fa arrow"></span></a>
+                    <a href="#"><i class="glyphicon glyphicon-th-list"></i> Actividades<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="<?php echo site_url("");?>">Asignación de Actividades</a>
@@ -95,7 +96,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Gestión de Problemas<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-file-o"></i> Gestión de Problemas<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="<?php echo site_url("");?>">Revisión de actividades</a>
@@ -109,7 +110,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Nuevo Requerimiento<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-gears"></i> Nuevo Requerimiento<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="<?php echo site_url("");?>">Revisión de actividades</a>
@@ -129,7 +130,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Actividades<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-gears"></i> Actividades<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="<?php echo site_url("");?>">Revisión de actividades</a>
@@ -143,7 +144,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Mantenimientos<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-gears"></i> Mantenimientos<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="<?php echo site_url("");?>">Revisión de actividades</a>
@@ -163,7 +164,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Configuraciones <span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-gears"></i> Configuraciones <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="<?php echo site_url("");?>">Actividades</a>
@@ -183,7 +184,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Integración <span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-users"></i> Integración <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="<?php echo site_url("");?>">Actividades</a>
@@ -203,7 +204,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Revisión de Documentación<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-files-o"></i> Revisión de Documentación<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="<?php echo site_url("");?>">Actividades</a>
@@ -240,7 +241,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Envió a Producción<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-share-square-o"></i>Envió a Producción<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="<?php echo site_url("");?>">Actividades Pedientes</a>
@@ -248,7 +249,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Reportes Consultas<span class="fa arrow"></span></a>
+                    <a href="#"><i class="glyphicon glyphicon-search"></i> Reportes Consultas<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                        <li>
                             <a href="<?php echo site_url("");?>">Reporte de actividades</a>
