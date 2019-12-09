@@ -1,4 +1,4 @@
-﻿CREATE TABLE usuarios.unidad
+﻿CREATE TABLE usuarios.p_unidad
 (
   codigo serial NOT NULL,
   descripcion_unidad character varying(150),
@@ -10,16 +10,16 @@
   campo5 character varying(50),
   estado character varying(5),
 
-  CONSTRAINT unidad_pkey PRIMARY KEY (codigo)
+  CONSTRAINT p_unidad_pkey PRIMARY KEY (codigo)
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE usuarios.unidad
+ALTER TABLE usuarios.p_unidad
   OWNER TO postgres;
 
 
-  CREATE TABLE usuarios.organizacion
+  CREATE TABLE usuarios.p_organizacion
 (
   codigo serial NOT NULL,
   cod_unidad integer,
@@ -33,18 +33,18 @@ ALTER TABLE usuarios.unidad
   estado character varying(5),
   CONSTRAINT organizacion_pkey PRIMARY KEY (codigo),
   CONSTRAINT unidad_id_unidad_fkey FOREIGN KEY (cod_unidad)
-      REFERENCES usuarios.unidad (codigo) MATCH SIMPLE
+      REFERENCES usuarios.p_unidad (codigo) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE usuarios.organizacion
+ALTER TABLE usuarios.p_organizacion
   OWNER TO postgres;
 
 
 
-CREATE TABLE usuarios.tipousuario
+CREATE TABLE usuarios.p_tipousuario
 (
   codigo serial NOT NULL,
   cod_organizacion integer,  
@@ -57,16 +57,18 @@ CREATE TABLE usuarios.tipousuario
   estado character varying(5),
   CONSTRAINT tipousuario_pkey PRIMARY KEY (codigo),
   CONSTRAINT organizacion_usuarios_id_organizacion_fkey FOREIGN KEY (cod_organizacion)
-  REFERENCES usuarios.organizacion (codigo) MATCH SIMPLE
+  REFERENCES usuarios.p_organizacion (codigo) MATCH SIMPLE
   ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE usuarios.tipousuario
+ALTER TABLE usuarios.p_tipousuario
   OWNER TO postgres;
 
-  CREATE TABLE usuarios.usuarios
+
+
+CREATE TABLE usuarios.t_usuarios
 (
   id serial NOT NULL,
   cod_tipo_user integer,
@@ -90,18 +92,18 @@ ALTER TABLE usuarios.tipousuario
   estado character varying(5),
   CONSTRAINT usuarios_pkey PRIMARY KEY (id),
   CONSTRAINT usuarios_cod_tipo_user_fkey FOREIGN KEY (cod_tipo_user)
-      REFERENCES usuarios.tipousuario (codigo) MATCH SIMPLE
+      REFERENCES usuarios.p_tipousuario (codigo) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE usuarios.usuarios
+ALTER TABLE usuarios.t_usuarios
   OWNER TO postgres;
 
 
 
-CREATE TABLE usuarios.organizacion_usuarios
+CREATE TABLE usuarios.t_organizacion_usuarios
 (
   id serial NOT NULL,
   id_usuario integer,
@@ -115,23 +117,63 @@ CREATE TABLE usuarios.organizacion_usuarios
   estado character varying(5),
   CONSTRAINT organizacion_usuarios_pkey PRIMARY KEY (id),
   CONSTRAINT organizacion_usuarios_id_usuario_fkey FOREIGN KEY (id_usuario)
-  REFERENCES usuarios.usuarios (id) MATCH SIMPLE
+  REFERENCES usuarios.t_usuarios (id) MATCH SIMPLE
   ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT organizacion_usuarios_id_organizacion_fkey FOREIGN KEY (cod_organizacion)
-  REFERENCES usuarios.organizacion (codigo) MATCH SIMPLE
+  REFERENCES usuarios.p_organizacion (codigo) MATCH SIMPLE
   ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE usuarios.organizacion_usuarios
+ALTER TABLE usuarios.t_organizacion_usuarios
+  OWNER TO postgres;
+
+
+CREATE TABLE usuarios.p_aplicaciones
+(
+  codigo serial NOT NULL,
+  descripcion character varying(60),
+  abreviatura integer,
+  nombre_aplicacion character varying(100),
+  campo1 character varying(100),
+  campo2 character varying(100),
+  estado character varying(5),
+  CONSTRAINT p_aplicaciones_pkey PRIMARY KEY (codigo)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE usuarios.p_aplicaciones
   OWNER TO postgres;
 
 
 
-CREATE TABLE usuarios.opciones
+CREATE TABLE usuarios.p_modulos
 (
   codigo serial NOT NULL,
+  cod_aplicacion integer,
+  descripcion character varying(200),
+  abreviatura character varying(5),
+  nombre character varying(50),
+  estado character varying(5),
+  CONSTRAINT p_modulos_pkey PRIMARY KEY (codigo),
+  CONSTRAINT p_modulos_cod_aplicacion_fkey FOREIGN KEY (cod_aplicacion)
+  REFERENCES usuarios.p_aplicaciones (codigo) MATCH SIMPLE
+  ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE usuarios.p_modulos
+  OWNER TO postgres;
+
+
+
+CREATE TABLE usuarios.p_opciones
+(
+  codigo serial NOT NULL,
+  cod_modulo integer,
   cod_opcion integer,
   tipo_opcion integer,
   opcion character varying(100),
@@ -145,54 +187,43 @@ CREATE TABLE usuarios.opciones
   campo4 character varying(50),
   campo5 character varying(50),
   estado character varying(5),
+  CONSTRAINT p_opciones_pkey PRIMARY KEY (codigo),
+  CONSTRAINT p_opciones_cod_modulo_fkey FOREIGN KEY (cod_modulo)
+  REFERENCES usuarios.p_modulos (codigo) MATCH SIMPLE
+  ON UPDATE NO ACTION ON DELETE NO ACTION
 
-  CONSTRAINT opciones_pkey PRIMARY KEY (codigo)
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE usuarios.opciones
+ALTER TABLE usuarios.p_opciones
   OWNER TO postgres;
 
 
-CREATE TABLE usuarios.roles_opciones
+CREATE TABLE transacciones.p_transaccion
 (
   codigo serial NOT NULL,
-  cod_opcion integer,
-  cod_tipo_user integer,
-  tipo_opcion integer,
-  opcion character varying(100),
-  link character varying(100),
-  nivel integer,
-  orden integer,
+  descripcion character varying(150),
+  abreviatura character varying(50),
+  fecha timestamp without time zone DEFAULT now(),
   campo1 character varying(50),
   campo2 character varying(50),
   campo3 character varying(50),
   campo4 character varying(50),
   campo5 character varying(50),
   estado character varying(5),
-
-  CONSTRAINT roles_opciones_pkey PRIMARY KEY (codigo),
-  CONSTRAINT roles_opciones_cod_opcion_fkey FOREIGN KEY (cod_opcion)
-  REFERENCES usuarios.opciones (codigo) MATCH SIMPLE
-  ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT roles_opciones_cod_tipo_user_fkey FOREIGN KEY (cod_tipo_user)
-  REFERENCES usuarios.tipousuario (codigo) MATCH SIMPLE
-  ON UPDATE NO ACTION ON DELETE NO ACTION
+  CONSTRAINT p_transaccion_pkey PRIMARY KEY (codigo)
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE usuarios.roles_opciones
+ALTER TABLE transacciones.p_transaccion
   OWNER TO postgres;
 
-
-
-
-CREATE TABLE usuarios.opciones_usuarios
+CREATE TABLE transacciones.t_logs
 (
   id serial NOT NULL,
-  cod_opcion integer,
+  cod_transaccion integer,
   id_usuario integer,
   fecha timestamp without time zone DEFAULT now(),
   campo1 character varying(50),
@@ -201,16 +232,84 @@ CREATE TABLE usuarios.opciones_usuarios
   campo4 character varying(50),
   campo5 character varying(50),
   estado character varying(5),
-  CONSTRAINT opciones_usuarios_pkey PRIMARY KEY (id),
-  CONSTRAINT opciones_usuarios_cod_opcion_fkey FOREIGN KEY (cod_opcion)
-  REFERENCES usuarios.opciones (codigo) MATCH SIMPLE
-  ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT opciones_usuarios_id_usuario_fkey FOREIGN KEY (id_usuario)
-  REFERENCES usuarios.usuarios (id) MATCH SIMPLE
+  CONSTRAINT t_logs_usuarios_pkey PRIMARY KEY (id),
+  CONSTRAINT t_logs_usuarios_cod_transaccion_fkey FOREIGN KEY (cod_transaccion)
+  REFERENCES transacciones.p_transaccion (codigo) MATCH SIMPLE
   ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE usuarios.opciones_usuarios
+ALTER TABLE transacciones.t_logs
+  OWNER TO postgres;
+
+CREATE TABLE usuarios.p_opciones_usuarios
+(
+  id serial NOT NULL,
+  cod_opcion integer,
+  id_usuario integer,
+  id_transaccion integer,
+  campo1 character varying(50),
+  campo2 character varying(50),
+  campo3 character varying(50),
+  campo4 character varying(50),
+  campo5 character varying(50),
+  estado character varying(5),
+  CONSTRAINT p_opciones_usuarios_pkey PRIMARY KEY (id),
+  CONSTRAINT p_opciones_usuarios_cod_opcion_fkey FOREIGN KEY (cod_opcion)
+  REFERENCES usuarios.p_opciones (codigo) MATCH SIMPLE
+  ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT p_opciones_usuarios_id_usuario_fkey FOREIGN KEY (id_usuario)
+  REFERENCES usuarios.t_usuarios (id) MATCH SIMPLE
+  ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT p_opciones_usuarios_id_transaccion_fkey FOREIGN KEY (id_transaccion)
+  REFERENCES transacciones.t_logs (id) MATCH SIMPLE
+  ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE usuarios.p_opciones_usuarios
+  OWNER TO postgres;
+
+
+  CREATE TABLE usuarios.p_oficinas
+(
+  codigo serial NOT NULL,
+  descripcion character varying(150),
+  abreviatura character varying(50),
+  fecha timestamp without time zone DEFAULT now(),
+  campo1 character varying(50),
+  campo2 character varying(50),
+  campo3 character varying(50),
+  campo4 character varying(50),
+  campo5 character varying(50),
+  estado character varying(5),
+  CONSTRAINT p_oficinas_pkey PRIMARY KEY (codigo)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE usuarios.p_oficinas
+  OWNER TO postgres;
+
+
+
+CREATE TABLE usuarios.p_cargos
+(
+  codigo serial NOT NULL,
+  cod_oficina integer NOT NULL,
+  descripcion character varying(200),
+  abreviatura character varying(5),
+  nombre character varying(50),
+  estado character varying(5),
+  CONSTRAINT p_cargos_pkey PRIMARY KEY (codigo),
+  CONSTRAINT p_cargos_cod_oficina_fkey FOREIGN KEY (cod_oficina)
+  REFERENCES usuarios.p_oficinas (codigo) MATCH SIMPLE
+  ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE usuarios.p_cargos
   OWNER TO postgres;

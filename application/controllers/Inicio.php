@@ -15,7 +15,7 @@ class Inicio extends CI_Controller
 		if($is_logued_in != TRUE)
 		{
 			redirect('usuarios');
-		}	
+		}	 
 	}
 	function index() 
 	{

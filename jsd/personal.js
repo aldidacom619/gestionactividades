@@ -16,7 +16,7 @@ function cargarcombos()
 {
 	var enlace = base_url + "Personal/getorganizacion";
     $.ajax({
-        type: "GET",
+        type: "GET", 
         url: enlace,
         success: function(data)  
          {

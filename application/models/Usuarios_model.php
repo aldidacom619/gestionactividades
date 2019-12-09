@@ -14,7 +14,7 @@ class Usuarios_model extends CI_Model
 	function loguear($username, $password)
 	{
 		$query = $this->db_act->query("select *
-									 from usuarios.usuarios 
+									 from usuarios.t_usuarios 
 									where username = '".$username."' 
 									  and contrasenia = '".$password."'");	
         return $query->result();   

@@ -13,7 +13,7 @@ class Personal_model extends CI_Model
 	function get_personas()
 	{		
 		$query = $this->db_act->query("select *
-									 from usuarios.usuarios									      
+									 from usuarios.t_usuarios									      
 									where estado = 'AC'
 									order by primer_apellido asc" );
         return $query->result();	
@@ -21,7 +21,7 @@ class Personal_model extends CI_Model
 	function getorganizacion()
 	{
 		$query = $this->db->query("select *
-									 from usuarios.organizacion
+									 from usuarios.p_organizacion
 									where estado = 'AC'
 									order by codigo asc");	
         return $query->result();
@@ -29,7 +29,7 @@ class Personal_model extends CI_Model
 	function gettipousuario($codigo)
 	{
 		$query = $this->db->query("select *
-									 from usuarios.tipousuario
+									 from usuarios.p_tipousuario
 									where cod_organizacion =".$codigo."
 									  and estado = 'AC'");	
         return $query->result();

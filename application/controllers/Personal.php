@@ -25,34 +25,14 @@ class Personal extends CI_Controller
 		$dato['usuario'] = $this->session->userdata('usuario');
 		$dato['rolescero'] = $this->roles_model->obtener_roles_cero($id_usu);
 		$dato['roles'] = $this->roles_model->obtener_roles($id_usu);
+		$dato['personas'] = $this->personal_model->get_personas();
+		
 
 		$this->load->view("Inicio/cabecera");
 		$this->load->view("Inicio/cabecera");		
 		$this->load->view("Inicio/menu",$dato);		
-		//$this->load->view("Inicio/cuerpo");		
+		$this->load->view("Personal/lista_personas",$dato);		
 		$this->load->view("Inicio/pie");
-	}
-	function asignacion_area()
-	{
-		$id_usu = $this->session->userdata('id');
-		if(1 == 1)
-		{
-			$dato['id_usu'] = $id_usu;
-			$dato['usuario'] = $this->session->userdata('usuario');
-			$dato['rolescero'] = $this->roles_model->obtener_roles_cero($id_usu);
-			$dato['roles'] = $this->roles_model->obtener_roles($id_usu);
-			$dato['personas'] = $this->personal_model->get_personas();
-
-			$this->load->view("Inicio/cabecera");
-			$this->load->view("Inicio/cabecera");		
-			$this->load->view("Inicio/menu",$dato);		
-			$this->load->view("Personal/lista_personas");		
-			$this->load->view("Inicio/pie");
-		}
-		else{
-			//$this->index();
-			redirect("inicio");
-		}
 	}
 	function asignar_area($id)
 	{
